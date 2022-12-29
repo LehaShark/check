@@ -11,6 +11,8 @@ from configs import DatasetConfig, TrainerConfig
 from trainer import Trainer
 # from torchvision.models import resnet50, ResNet50_Weights
 from nets import resnet50
+from utils import get_mean_std
+
 
 if __name__ == '__main__':
 
