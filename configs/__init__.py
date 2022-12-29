@@ -1,2 +1,3 @@
 from configs.crawler_config import CrawlerConfig
 from configs.dataset_config import DatasetConfig
+from configs.trainer_config import TrainerConfig

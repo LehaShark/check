@@ -7,20 +7,23 @@ from torch.utils.data import DataLoader
 from torchvision import transforms, datasets
 from torch.utils.tensorboard import SummaryWriter
 
-from configs import DatasetConfig
-from executors.trainer import Trainer
+from configs import DatasetConfig, TrainerConfig
+from trainer import Trainer
+# from torchvision.models import resnet50, ResNet50_Weights
+from nets import resnet50
 
 if __name__ == '__main__':
-    # DATASET_ROOT = 'data/'
 
     dataset_config = DatasetConfig()
     trainer_config = TrainerConfig()
-    model_cfg = OriginalResNetConfig()
-    # model_cfg = ModifyResNetConfig()
+
+    resnet50(pretrained=True)
 
     keys = train_key, valid_key = 'train', 'valid'
 
     jitter_param = (0.6, 1.4)
+
+
 
     normalize = [transforms.ToTensor(),
                  transforms.Normalize(mean=[0.485, 0.456, 0.405],
@@ -50,12 +53,12 @@ if __name__ == '__main__':
                         valid_key: DataLoader(datasets_dict[valid_key],
                                               batch_size=trainer_config.batch_size)}
 
-    model = OriginalResNet(model_cfg).to(trainer_config.device)
+    # model = OriginalResNet(model_cfg).to(trainer_config.device)
     # model = ModifyResNet(model_cfg).to(trainer_config.device)
 
                                                                                                                         # weight decay
     if trainer_config.weight_decay is not None:
-        w, b = get_weights(model)
+        w, b = get_weights(re)
         params = [dict(params=w, weight_decay=trainer_config.weight_decay),
                   dict(params=b)]
     else:

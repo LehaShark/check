@@ -21,4 +21,4 @@ class TrainerConfig:
 
         self.label_smoothing = 5e-3
 
-        self.LOG_PATH = os.path.join(DatasetConfig().PATH, '../logs')
+        self.LOG_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'logs')

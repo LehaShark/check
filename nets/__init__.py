@@ -1,0 +1,1 @@
+from nets.resnet import resnet50
