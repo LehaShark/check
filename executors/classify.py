@@ -23,9 +23,12 @@ if __name__ == '__main__':
 
     keys = train_key, valid_key = 'train', 'valid'
 
-    jitter_param = (0.6, 1.4)
+    # jitter_param = (0.6, 1.4)
+    if dataset_config.count_mean_std:
+        dataset = ImageFolder(root=os.path.join(dataset_config.PATH, train_key))
+        dataloader = DataLoader(dataset, batch_size=trainer_config.batch_size)
 
-
+    mean, std = get_mean_std(dataloader)
 
     normalize = [transforms.ToTensor(),
                  transforms.Normalize(mean=[0.485, 0.456, 0.405],
@@ -43,12 +46,10 @@ if __name__ == '__main__':
                                                        *normalize])}
     target_transforms = {}
 
-    datasets_dict = {k: datasets.ImageFolder(root=os.path.join(dataset_config.PATH, k),
+    datasets_dict = {k: ImageFolder(root=os.path.join(dataset_config.PATH, k),
                                              transform=image_transforms[k] if k in image_transforms else None,
                                              target_transform=target_transforms[k] if k in target_transforms else None)
                      for k in keys}
-
-
 
     dataloaders_dict = {train_key: DataLoader(datasets_dict[train_key],
                                               batch_size=trainer_config.batch_size, shuffle=True),
@@ -57,14 +58,6 @@ if __name__ == '__main__':
 
     # model = OriginalResNet(model_cfg).to(trainer_config.device)
     # model = ModifyResNet(model_cfg).to(trainer_config.device)
-
-                                                                                                                        # weight decay
-    if trainer_config.weight_decay is not None:
-        w, b = get_weights(re)
-        params = [dict(params=w, weight_decay=trainer_config.weight_decay),
-                  dict(params=b)]
-    else:
-        params = model.parameters()
 
     optimizer = optim.SGD(params, lr=trainer_config.lr, momentum=trainer_config.momentum)
     criterion = nn.CrossEntropyLoss()

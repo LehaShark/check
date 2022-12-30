@@ -22,7 +22,7 @@ class Trainer:
                  criterion,
                  writer,
                  config,
-                 dataloader: dict,
+                 dataloaders: dict,
                  scheduler=None,
                  ):
 
@@ -34,7 +34,7 @@ class Trainer:
         self.criterion = criterion
         self.scheduler = scheduler
 
-        self.dataloader = dataloader
+        self.dataloaders = dataloaders
 
         self.writer = writer
 
@@ -58,7 +58,7 @@ class Trainer:
 
         len_dataloader = 0
         correct_ep = 0
-        for step, (images, targets) in enumerate(self.dataloader[stage]):
+        for step, (images, targets) in enumerate(self.dataloaders[stage]):
             self._global_step[stage] += 1
 
             predictions = self.model(images.to(self.device))

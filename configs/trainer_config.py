@@ -8,7 +8,7 @@ class TrainerConfig:
         self.epoch_num = 10
         self.lr = 1e-3
         self.weight_decay = 1e-4
-        self.batch_size = 16
+        self.batch_size = 64
 
         self.show_statistics = True
         # self.device = torch.device('cuda:0')

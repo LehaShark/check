@@ -2,19 +2,20 @@ from icrawler.builtin import GoogleImageCrawler
 from configs import CrawlerConfig
 import torch
 
-def google_image_downloader():
-    config = CrawlerConfig()
+
+def google_image_downloader(config: CrawlerConfig = None):
     crawler = GoogleImageCrawler(storage={'root_dir': config.download_path})
     crawler.crawl(keyword=config.request_word,
                   max_num=config.count_picture,
                   file_idx_offset='auto'
                   )
 
-def get_mean_std(dataloader):
+
+def get_mean_std(datalaoder):
     channels_sum, channels_squared_sum, num_batches = 0, 0, 0
-    for data, _ in dataloader:
+    for data in datalaoder:
         channels_sum += torch.mean(data, dim=[0, 2, 3])
-        channels_squared_sum += torch.mean(data**2, dim=[0, 2, 3])
+        channels_squared_sum += torch.mean(data ** 2, dim=[0, 2, 3])
         num_batches += 1
 
     mean = channels_sum / num_batches
