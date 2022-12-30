@@ -11,14 +11,24 @@ def google_image_downloader(config: CrawlerConfig = None):
                   )
 
 
-def get_mean_std(datalaoder):
+def get_mean_std(dataset):
     channels_sum, channels_squared_sum, num_batches = 0, 0, 0
-    for data in datalaoder:
-        channels_sum += torch.mean(data, dim=[0, 2, 3])
-        channels_squared_sum += torch.mean(data ** 2, dim=[0, 2, 3])
+    for data, _ in dataset:
+        channels_sum += torch.mean(data, dim=[1, 2])
+        channels_squared_sum += torch.mean(data ** 2, dim=[1, 2])
         num_batches += 1
 
     mean = channels_sum / num_batches
     std = (channels_squared_sum / num_batches - mean ** 2) ** 0.5
 
     return mean, std
+
+
+def get_weights(model):
+    _, weights = [], []
+    for name, param in model.named_parameters():
+        if name.split('.')[-1] == 'weight':
+            weights.append(param)
+        else:
+            _.append(param)
+    return weights, _

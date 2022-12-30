@@ -11,8 +11,8 @@ class TrainerConfig:
         self.batch_size = 64
 
         self.show_statistics = True
-        # self.device = torch.device('cuda:0')
-        self.device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+        self.device = torch.device('cuda')
+        # self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
         self.criterion = 'CrossEntropyLoss'
         self.optim = 'SGD'

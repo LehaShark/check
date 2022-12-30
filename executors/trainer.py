@@ -28,7 +28,7 @@ class Trainer:
 
         self.config = config
         self.device = self.config.device
-        self.model = model
+        self.model = model.to(self.device)
 
         self.optimizer = optimizer
         self.criterion = criterion
@@ -43,7 +43,7 @@ class Trainer:
     def _get_global_step(self, data_type):
         self._global_step[data_type] = -1
 
-    def _epoch_step(self, stage = 'test', epoch = None):
+    def _epoch_step(self, stage='test', epoch= None):
 
         if stage not in self._global_step:
             self._get_global_step(stage)
@@ -62,6 +62,7 @@ class Trainer:
             self._global_step[stage] += 1
 
             predictions = self.model(images.to(self.device))
+            predictions = predictions.reshape(64)
 
             if stage == 'train':
                 self.optimizer.zero_grad()
