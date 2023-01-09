@@ -43,7 +43,7 @@ class Trainer:
     def _get_global_step(self, data_type):
         self._global_step[data_type] = -1
 
-    def _epoch_step(self, stage='test', epoch= None):
+    def _epoch_step(self, stage='test', epoch=None):
 
         if stage not in self._global_step:
             self._get_global_step(stage)
@@ -61,15 +61,16 @@ class Trainer:
         for step, (images, targets) in enumerate(self.dataloaders[stage]):
             self._global_step[stage] += 1
 
+            # for i, im in enumerate(images):
+            #     self.writer.add_image(str(i), im, global_step=self._global_step[stage])
+
             predictions = self.model(images.to(self.device))
-            predictions = predictions.reshape(64)
+            # predictions[predictions < 0] = 0
 
             if stage == 'train':
                 self.optimizer.zero_grad()
 
-            loss = self.criterion(predictions, targets.to(self.device))
-            # loss2 = tar2
-            # loss = loss1 * l + loss2 * (1-l)
+            loss = self.criterion(predictions.to(torch.float32).cpu(), targets.to(torch.float32))
 
             self.writer.add_scalar(f'{stage}/loss', loss, self._global_step[stage])
 
@@ -82,7 +83,7 @@ class Trainer:
 
                 self._loss_train_step += loss.item()
                 running_loss = self._loss_train_step / (step + 1)
-            correct = (torch.argmax(predictions.cpu(), dim=1) == targets.cpu()).sum()
+            correct = ((predictions > 0.5).long().cpu() == targets.cpu()).sum()
             # correct = (torch.argmax(predictions.cpu(), dim=1) == torch.argmax(targets.cpu(), dim=1)).sum()
 
             acc = correct / len(targets)

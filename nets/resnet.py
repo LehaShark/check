@@ -5,6 +5,7 @@ import torch
 import torch.nn as nn
 from torch import Tensor
 
+
 # from .._internally_replaced_utils import load_state_dict_from_url
 # from torchvision.utils import _log_api_usage_once
 
@@ -209,7 +210,8 @@ class ResNet(nn.Module):
 
         x = self.avgpool(x)
         x = torch.flatten(x, 1)
-        x = self.fc(x)
+        x = self.fc(x).reshape(-1)
+        x = torch.nn.functional.sigmoid(x)
 
         return x
 

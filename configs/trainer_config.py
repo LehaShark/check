@@ -5,10 +5,10 @@ from configs.dataset_config import DatasetConfig
 
 class TrainerConfig:
     def __init__(self):
-        self.epoch_num = 10
+        self.epoch_num = 55
         self.lr = 1e-3
         self.weight_decay = 1e-4
-        self.batch_size = 64
+        self.batch_size = 128
 
         self.show_statistics = True
         self.device = torch.device('cuda')
