@@ -118,7 +118,7 @@ class Trainer:
             print("Train Steps: %d/%d Loss: %.4f Acc: %.4f \n" % (step, total_step, loss, acc))
             # sys.stdout.write("Train Steps: %d/%d Loss: %.4f Acc: %.4f" % (step, total_step, loss, acc))
         else:
-            print("Valid Steps: %d/%d Loss: %.4f Acc: %.4f \n" % (step, total_step, loss, acc))
+            print("Valid Steps: %d/%d Loss: %.4f Acc: %.4f \n" % (step, total_step + 1, loss, acc))
             # sys.stdout.write("Valid Steps: %d/%d Loss: %.4f Acc: %.4f" % (step, total_step, loss, acc))
 
         sys.stdout.flush()

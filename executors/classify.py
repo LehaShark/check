@@ -94,7 +94,7 @@ if __name__ == '__main__':
     else:
         params = model.parameters()
 
-    optimizer = optim.SGD(model.parameters(), lr=trainer_config.lr)
+    optimizer = optim.SGD(params, lr=trainer_config.lr)
     criterion = nn.BCELoss()
 
     writer = SummaryWriter(log_dir=trainer_config.LOG_PATH)

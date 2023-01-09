@@ -15,7 +15,7 @@ config = DatasetConfig()
 
 
 class Imposition(ImageOnlyTransform):
-    def __init__(self, crop_sizes: tuple, always_apply: bool = False, p: float = 0.5):
+    def __init__(self, crop_sizes: tuple, always_apply: bool = False, p: float = 1):
         super().__init__(always_apply, p)
         self.backgroundspath = os.path.join(config.PATH, 'train', 'negative')
 
