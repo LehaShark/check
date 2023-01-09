@@ -1,1 +1,1 @@
-from datasets.dataset import CHECK, ImageLoader
+from datasets.dataset import ImageLoader
