@@ -5,7 +5,7 @@ from configs.dataset_config import DatasetConfig
 
 class TrainerConfig:
     def __init__(self):
-        self.epoch_num = 75
+        self.epoch_num = 80
         self.lr = 1e-3
         self.weight_decay = 1e-4
         self.batch_size = 128

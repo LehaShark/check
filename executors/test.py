@@ -90,6 +90,8 @@ if __name__ == '__main__':
     # Image.fromarray((np.asarray(unnorm_im)).astype(np.uint8)).save(os.path.join(path, 'unnorm.png'))
     # j = 0
 
+
+    #/////////////////////////////
     dataset_config = DatasetConfig()
     trainer_config = TrainerConfig()
 
@@ -139,5 +141,3 @@ if __name__ == '__main__':
         for j, (image, targets) in enumerate(dataloader):
             image = (image - image.min()) / (image.max() - image.min())
             Image.fromarray(np.asarray(image[0]*255).astype('uint8').transpose((1, 2, 0))).save(os.path.join('im', str(i) + str(j) + ' class- ' + str(targets[0].item()) + '.png'))
-
-
