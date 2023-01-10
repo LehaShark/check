@@ -6,6 +6,10 @@
 conda install pytorch torchvision torchaudio pytorch-cuda=11.6 -c pytorch -c nvidia albumentations pillow tensorboard
 ```
 
+```angular2html
+pip install icrawler
+```
+
 Схема расположения данных в директориях:
 
 ├── dataset
