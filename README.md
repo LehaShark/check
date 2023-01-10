@@ -1,5 +1,11 @@
 # check
 
+**Библиотеки:**
+
+```angular2html
+conda install pytorch torchvision torchaudio pytorch-cuda=11.6 -c pytorch -c nvidia albumentations pillow
+```
+
 Схема расположения данных в директориях:
 
 ├── dataset
