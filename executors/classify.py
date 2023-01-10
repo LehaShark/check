@@ -1,10 +1,7 @@
-from torchvision.datasets import ImageFolder
-
 import os
 from torch import nn
 from torch import optim
 from torch.utils.data import DataLoader
-from torchvision import transforms, datasets
 from torch.utils.tensorboard import SummaryWriter
 
 from configs import DatasetConfig, TrainerConfig
@@ -13,11 +10,8 @@ from trainer import Trainer
 from nets import resnet50
 from transforms import Imposition
 from utils import get_mean_std, get_weights
-import numpy as np
 import albumentations as A
-from PIL import Image
 from albumentations.pytorch import ToTensorV2
-import matplotlib.pyplot as plt
 
 if __name__ == '__main__':
 
