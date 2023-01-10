@@ -1,9 +1,9 @@
 # check
 
-**Библиотеки:**
+**Установка библиотек:**
 
 ```angular2html
-conda install pytorch torchvision torchaudio pytorch-cuda=11.6 -c pytorch -c nvidia albumentations pillow
+conda install pytorch torchvision torchaudio pytorch-cuda=11.6 -c pytorch -c nvidia albumentations pillow tensorboard
 ```
 
 Схема расположения данных в директориях:
