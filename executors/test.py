@@ -74,7 +74,6 @@ if __name__ == '__main__':
 
     }
 
-
     target_transforms = {}
 
     datasets_dict = {k: ImageLoader(root=os.path.join(dataset_config.PATH, k),

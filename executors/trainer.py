@@ -65,7 +65,6 @@ class Trainer:
             #     self.writer.add_image(str(i), im, global_step=self._global_step[stage])
 
             predictions = self.model(images.to(self.device))
-            # predictions[predictions < 0] = 0
 
             if stage == 'train':
                 self.optimizer.zero_grad()

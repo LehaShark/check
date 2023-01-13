@@ -102,7 +102,7 @@ if __name__ == '__main__':
                       config=trainer_config,
                       writer=writer)
 
-    # model = trainer.load_model(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "logs\\exp_1\\40.pth"))
+    # model = trainer.load_model(os.path.join(os.path.dirname(os.path.abspath(__file__)), "logs\\exp_1\\40.pth"))
 
     for epoch in range(trainer_config.epoch_num):
 
